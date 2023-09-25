@@ -5,12 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            background-color: #fff;
+            width: 80%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <form action="/feedback/" method="post">
+    <form action="####" method="post">
         {% csrf_token %}
         <label for="">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+        <input type="text" id="username" name="username" placeholder="Name" required><br><br>
        
         <label for="">Class</label>
         <input type="number" id="class" name="class" placeholder="Class" required><br><br>
@@ -28,12 +76,12 @@
         <input type="text" id="goals" name="goals" placeholder="enter the goals" required><br><br>
             
         <label for="">Learning Disabilities</label>
-        <input type="checkbox" id="learn" name="learn" placeholder="Learning Disabilities" ><br><br>
+        <input type="checkbox" id="learn" name="learn" placeholder="Learning Disabilities"><br><br>
 
         <label for="">Disability_Type</label>
         <input type="text" id="disable" name="disable" placeholder="Disability Type" ><br><br>
 
-        <label for="">Financial Concers</label>
+        <label for="">Finacial Corners</label>
         <input type="text" id="fincon" name="fincon" placeholder="Finacial Corners" required><br><br>
 
         <label for="">Career Interests</label>
