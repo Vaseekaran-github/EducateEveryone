@@ -3,6 +3,9 @@ from django.shortcuts import redirect, render
 from django.http import *
 from django.contrib import messages
 from . import models
+from matplotlib import pyplot as plt
+from io import BytesIO
+import base64
 
 def feedback(request):
 
@@ -41,4 +44,33 @@ def feedback(request):
         return redirect('home')
     
     return render(request,"FeedBack/feedback.html")
+
+
+
+def generate_graph(request):
+    data = models.StudentDifficulty.objects.all()
+
+    # Extract values for Academic_Performance and Attendance
+    academic_performance = [entry.Academic_Performance for entry in data]
+    attendance = [entry.Attendance for entry in data]
+
+    # Create a scatter plot
+    plt.scatter(academic_performance, attendance)
+    plt.xlabel('Academic Performance')
+    plt.ylabel('Attendance')
+    plt.title('Academic Performance vs. Attendance')
+
+    # Save the plot to a memory buffer
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plt.close()
+
+    # Convert the buffer content to base64
+    graph_data = base64.b64encode(buffer.read()).decode()
+
+    # Embed the base64 image data in an HTML response
+    html_response = f'<img src="data:image/png;base64,{graph_data}" alt="Graph">'
+
+    return HttpResponse(html_response)
 
