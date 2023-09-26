@@ -48,7 +48,8 @@ def feedback(request):
 
 
 def generate_graph(request):
-    data = models.StudentDifficulty.objects.all()
+    # Retrieve data and sort it by academic performance in ascending order
+    data = models.StudentDifficulty.objects.order_by('Academic_Performance')
 
     # Extract values for Academic_Performance and Attendance
     academic_performance = [entry.Academic_Performance for entry in data]
@@ -73,4 +74,6 @@ def generate_graph(request):
     html_response = f'<img src="data:image/png;base64,{graph_data}" alt="Graph">'
 
     return HttpResponse(html_response)
+ 
+
 
